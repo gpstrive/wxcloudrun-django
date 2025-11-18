@@ -93,7 +93,7 @@ def update_count(request):
                             json_dumps_params={'ensure_ascii': False})
 
 
-def random_string(request):
+def random_string(request, _):
     """
     返回随机的3MB-5MB字符串
     
