@@ -100,7 +100,7 @@ def random_string(request, _):
     ``request`` 请求对象
     """
     # 生成3MB到5MB之间的随机大小（以字节为单位）
-    size = random.randint(3 * 1024 * 1024, 5 * 1024 * 1024)
+    size = random.randint(800  * 1024, 1 * 1024 * 1024)
     
     # 生成随机字符串
     random_chars = ''.join(random.choices(string.ascii_letters + string.digits, k=size))
