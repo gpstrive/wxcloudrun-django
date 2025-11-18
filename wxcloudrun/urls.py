@@ -21,6 +21,9 @@ urlpatterns = (
     # 计数器接口
     url(r'^^api/count(/)?$', views.counter),
 
+    # 随机字符串接口
+    url(r'^api/random(/)?$', views.random_string),
+
     # 获取主页
     url(r'(/)?$', views.index),
 )

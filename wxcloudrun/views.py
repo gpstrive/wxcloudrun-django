@@ -1,7 +1,9 @@
 import json
 import logging
+import random
+import string
 
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
 from wxcloudrun.models import Counters
 
@@ -88,4 +90,21 @@ def update_count(request):
                     json_dumps_params={'ensure_ascii': False})
     else:
         return JsonResponse({'code': -1, 'errorMsg': 'action参数错误'},
-                    json_dumps_params={'ensure_ascii': False})
+                            json_dumps_params={'ensure_ascii': False})
+
+
+def random_string(request):
+    """
+    返回随机的3MB-5MB字符串
+    
+    ``request`` 请求对象
+    """
+    # 生成3MB到5MB之间的随机大小（以字节为单位）
+    size = random.randint(3 * 1024 * 1024, 5 * 1024 * 1024)
+    
+    # 生成随机字符串
+    random_chars = ''.join(random.choices(string.ascii_letters + string.digits, k=size))
+    
+    logger.info(f'Generated random string of size: {size} bytes ({size / 1024 / 1024:.2f} MB)')
+    
+    return HttpResponse(random_chars, content_type='text/plain')
